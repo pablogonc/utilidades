@@ -1,0 +1,8 @@
+/*
+ * inicio.c
+ *
+ *  Created on: 8 ago. 2021
+ *      Author: utnso
+ */
+#include <commons/collections/dictionary.h>
+

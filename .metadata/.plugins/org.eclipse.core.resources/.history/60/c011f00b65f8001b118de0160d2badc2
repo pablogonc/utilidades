@@ -1,0 +1,42 @@
+/*
+ * globals.h
+ *
+ *  Created on: 8 ago. 2021
+ *      Author: utnso
+ */
+
+#ifndef SRC_UTILS_GLOBALS_H_
+#define SRC_UTILS_GLOBALS_H_
+
+typedef enum //codigos de operaciones servidor
+{
+	//consola
+	OP_SUMA,
+	OP_RESTA,
+	OP_MENSAJE,
+	INICIAR_PLANIFICACION,
+	PAUSAR_PLANIFICACION,
+	OBTENER_BITACORA,
+	//ram_tripulante
+	INICIAR_TRIPULANTE,
+	RECIBIR_UBICACION,
+	RECIBIR_TAREAS,
+	ENVIAR_PROXIMA_TAREA,
+	DUMP_MEMORIA,
+	NOHAYTAREAS, //ver
+	FAILURE,
+	//store
+	SABOTAJE,
+	FSCK,
+	test2,
+	GENERAR_OXIGENO,
+	CONSUMIR_OXIGENO,
+	GENERAR_COMIDA,
+	CONSUMIR_COMIDA,
+	GENERAR_BASURA,
+	DESCARTAR_BASURA
+}op_code;
+
+
+
+#endif /* SRC_UTILS_GLOBALS_H_ */

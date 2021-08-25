@@ -1,0 +1,101 @@
+/*
+ * inicio.c
+ *
+ *  Created on: 8 ago. 2021
+ *      Author: utnso
+ */
+#include <commons/collections/dictionary.h>
+#include <commons/config.h>
+#include <readline/readline.h>
+#include <stdlib.h>
+#include<stdio.h>
+#include<unistd.h>
+#include <commons/string.h>
+#include <utils/globals.h>
+
+//funciones
+int* arrayStringToArrayInt(char* arrayString, int* size);
+
+//usos
+	void ejemplo_arrayStringToArrayInt();
+
+//
+
+
+int* arrayStringToArrayInt(char* arrayString, int* size){
+	char ** values = string_get_string_as_array(arrayString);
+
+	int* intArray = NULL;
+
+	int element=0;
+
+	while(values[element] != NULL){
+		intArray = realloc(intArray,sizeof(int)* (element+1) );
+
+		intArray[element] = atoi( values[element] );
+
+		element++;
+	}
+
+	*size = element;
+
+	return intArray;
+
+}
+
+
+void ejemplo_arrayStringToArrayInt(){
+	int size;
+
+	char* str = readline("Ingrese Vector:"); //[4,5,15]
+
+	int* array = arrayStringToArrayInt(str,&size);
+
+	for(int i=0; i<size; i++){
+		printf(" '%d' ",array[i]);
+	}
+}
+
+void ejemplo_config(){
+
+	char* path = "ejemplo.txt";
+
+
+	if( access( path, F_OK ) ){
+		FILE* f = fopen(path,"w");
+		fclose(f);
+	}
+
+	t_config *config = config_create(path);
+
+
+	char* tag;
+	char* value;
+
+	while(strcmp(tag,"-1") != 0){
+		PRINT_COLOR_MAGENTA
+		PRINT_COLOR_RESET
+		PRINT_COLOR_BLUE
+		tag=readline("Ingrese nombre etiqueta:" );
+
+		value = readline("Ingrese valor:");
+
+		config_set_value(config,tag,value);
+
+		readline("enter para guardar en archivo");
+
+		config_save(config);
+
+	}
+}
+
+
+
+int main(){
+
+	//ejemplo_arrayStringToArrayInt();
+
+
+
+}
+

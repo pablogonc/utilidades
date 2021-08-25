@@ -1,0 +1,82 @@
+/*
+ * inicio.c
+ *
+ *  Created on: 8 ago. 2021
+ *      Author: utnso
+ */
+#include <commons/collections/dictionary.h>
+#include <commons/config.h>
+#include <readline/readline.h>
+#include <stdlib.h>
+
+#include <commons/string.h>
+
+
+
+
+int* arrayStringToArrayInt(char* arrayString, int* size){
+	char ** values = string_get_string_as_array(arrayString);
+
+	int* intArray = NULL;
+
+	int element=0;
+
+	while(values[element] != NULL){
+		intArray = realloc(intArray,sizeof(int)* (element+1) );
+
+		intArray[element] = atoi( values[element] );
+
+		element++;
+	}
+
+	*size = element;
+
+	return intArray;
+
+}
+
+
+void ejemplo_arrayStringToArrayInt(){
+	int size;
+
+	char* str = readline("Ingrese Vector:");
+
+	int* array = arrayStringToArrayInt("[1,5,45,2]",&size);
+
+	for(int i=0; i<size; i++){
+		printf(" '%d' ",array[i]);
+	}
+}
+
+
+
+
+
+int main(){
+
+	ejemplo_arrayStringToArrayInt();
+
+	/*
+	t_config *config = config_create("nugaton.config");
+	config_save_in_file(config,"nugaton.config");
+
+
+	char* leido;
+
+	while(1){
+
+		leido=readline("nuevo nombre:");
+
+		config_set_value(config,"nombre",leido);
+
+		readline("press enter to save");
+
+		config_save_in_file(config, "nugaton.txt");
+
+		config_save(config);
+
+
+	}
+	*/
+}
+

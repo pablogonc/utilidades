@@ -1,0 +1,129 @@
+/*
+ * inicio.c
+ *
+ *  Created on: 8 ago. 2021
+ *      Author: utnso
+ */
+#include <commons/collections/dictionary.h>
+#include <commons/config.h>
+#include <readline/readline.h>
+#include <stdlib.h>
+#include<stdio.h>
+#include<unistd.h>
+#include <commons/string.h>
+#include <utils/globals.h>
+
+//funciones
+	//Recibe "[4,5,8,7,5,4,4]" y retorna cada int en un puntero y su size
+		int* StringToArrayInt(char* arrayString, int* size);
+
+	//Recibe "7","5","2","4" y retorna cada int en un puntero y su size
+		int* arrayStringToArrayInt(char** arrayString, int* size);
+
+//usos
+	void ejemplo_arrayStringToArrayInt();
+	void ejemplo_StringToArrayInt();
+	void ejemplo_config();
+//
+
+
+int* arrayStringToArrayInt(char** arrayString, int* size){
+
+	int* intArray = NULL;
+
+	int element=0;
+
+	while(arrayString[element] != NULL){
+		intArray = realloc(intArray,sizeof(int)* (element+1) );
+
+		intArray[element] = atoi( arrayString[element] );
+
+		element++;
+	}
+
+	*size = element;
+
+	return intArray;
+
+}
+int* StringToArrayInt(char* arrayString, int* size){
+	char ** values = string_get_string_as_array(arrayString);
+
+	int* intArray = NULL;
+
+	int element=0;
+
+	while(values[element] != NULL){
+		intArray = realloc(intArray,sizeof(int)* (element+1) );
+
+		intArray[element] = atoi( values[element] );
+
+		element++;
+	}
+
+	*size = element;
+
+	return intArray;
+
+}
+
+void ejemplo_StringToArrayInt(){
+	int size;
+
+	char* str = readline("Ingrese Vector:"); //[4,5,15]
+
+	int* array = StringToArrayInt(str,&size);
+
+	for(int i=0; i<size; i++){
+		printf(" '%d' ",array[i]);
+	}
+}
+
+void ejemplo_config(){
+
+	char* path = "Oxigeno.ims";
+
+
+	if( access( path, F_OK ) ){
+		FILE* f = fopen(path,"w");
+		fclose(f);
+	}
+
+	t_config *config = config_create(path);
+
+
+	char* tag;
+	char* value;
+	printf("si repetis la etiqueta se cambia su valo\n para salir -1\n");
+	tag=readline("Ingrese nombre etiqueta:");
+
+	while(strcmp(tag,"-1") != 0){
+
+		value = readline("Ingrese valor:");
+
+		config_set_value(config,tag,value);
+
+		readline("enter para guardar en archivo");
+
+		config_save(config);
+		tag=readline("Ingrese nombre etiqueta:");
+	}
+}
+
+
+
+int main(){
+	//ejemplo_arrayStringToArrayInt();
+	//ejemplo_config();
+	t_config* conf = config_create("Oxigeno.ims");
+
+	int size;
+	int* array = arrayStringToArrayInt(config_get_array_value(conf,"blocks"),&size);
+
+	for(int i=0;i<size;i++){
+		printf(" - %.2d - ",array[i]);
+	}
+
+
+}
+

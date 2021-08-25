@@ -1,0 +1,17 @@
+/*
+ * inicio.c
+ *
+ *  Created on: 8 ago. 2021
+ *      Author: utnso
+ */
+#include <commons/collections/dictionary.h>
+#include <commons/config.h>
+
+int main(){
+
+t_config* confi = config_create("nuevo,txt");
+char* name;
+config_get_string_value("nombre",)
+printf("name: ",name)
+}
+

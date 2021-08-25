@@ -1,0 +1,14 @@
+/*
+ * inicio.c
+ *
+ *  Created on: 4 ago. 2021
+ *      Author: utnso
+ */
+
+#include <utils/saludador.h>
+#include <utils/connector/connector.h>
+int main(void){
+
+	saludar();
+	connector_connect();
+}

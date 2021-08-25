@@ -1,0 +1,69 @@
+/*
+ * inicio.c
+ *
+ *  Created on: 8 ago. 2021
+ *      Author: utnso
+ */
+#include <commons/collections/dictionary.h>
+#include <commons/config.h>
+#include <readline/readline.h>
+#include <stdlib.h>
+#include <commons/string.h>
+
+//funciones
+int* arrayStringToArrayInt(char* arrayString, int* size);
+
+//usos
+	void ejemplo_arrayStringToArrayInt();
+
+//
+
+
+int* arrayStringToArrayInt(char* arrayString, int* size){
+	char ** values = string_get_string_as_array(arrayString);
+
+	int* intArray = NULL;
+
+	int element=0;
+
+	while(values[element] != NULL){
+		intArray = realloc(intArray,sizeof(int)* (element+1) );
+
+		intArray[element] = atoi( values[element] );
+
+		element++;
+	}
+
+	*size = element;
+
+	return intArray;
+
+}
+
+
+void ejemplo_arrayStringToArrayInt(){
+	int size;
+
+	char* str = readline("Ingrese Vector:"); //[4,5,15]
+
+	int* array = arrayStringToArrayInt(str,&size);
+
+	for(int i=0; i<size; i++){
+		printf(" '%d' ",array[i]);
+	}
+}
+
+void ejemplo_config(){
+
+}
+
+
+
+int main(){
+
+	//ejemplo_arrayStringToArrayInt();
+
+
+
+}
+

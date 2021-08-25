@@ -1,0 +1,54 @@
+/*
+ * cliente.c
+ *
+ *  Created on: 5 ago. 2021
+ *      Author: utnso
+ */
+
+
+#include <utils/connection/connection.h>
+#include <utils/globals.h>
+#include <stdio.h>
+#include <readline/readline.h>
+#include <string.h>
+#include <pthread.h>
+
+int main(void){
+
+
+
+	int server_socket = connection_connect("127.0.0.1","4449");
+	if(server_socket >0){
+		printf("conexion aceptada\n");
+		int sender;
+		char * message;
+		while(1){
+			connection_packet* p = connection_packet_create_with_opCode(125);
+
+			message = readline("send:");
+			sender = atoi(message);
+			connection_packet_add(p,&sender,sizeof(int));
+
+			message = readline("send:");
+			connection_packet_add_with_size(p,message,strlen(message)+1);
+
+			connection_packet_send(p,server_socket);
+			connection_packet_destroy(p);
+
+			p = connection_packet_create();
+			message = readline("send:");
+			sender = atoi(message);
+			connection_packet_add(p,&sender,sizeof(int));
+			connection_packet_send(p,server_socket);
+			connection_packet_destroy(p);
+		}
+	}else{
+		printf("conexion rechazada\n");
+	}
+
+
+
+	printf("saliendo");
+
+
+}

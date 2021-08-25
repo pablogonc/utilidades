@@ -1,0 +1,15 @@
+12:27:34 **** Incremental Build of configuration Debug for project usador ****
+make all 
+Building file: ../src/server.c
+Invoking: GCC C Compiler
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"src/server.d" -MT"src/server.o" -o "src/server.o" "../src/server.c"
+Finished building: ../src/server.c
+ 
+Building target: usador
+Invoking: GCC C Linker
+gcc -L"/home/utnso/test/usador/Debug" -o "usador"  ./src/server.o   -lsaludador -lreadline -lpthread -lutils
+Finished building target: usador
+ 
+
+12:27:35 Build Finished (took 1s.49ms)
+

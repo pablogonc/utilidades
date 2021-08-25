@@ -1,0 +1,24 @@
+/*
+ * inicio.c
+ *
+ *  Created on: 8 ago. 2021
+ *      Author: utnso
+ */
+#include <commons/collections/dictionary.h>
+#include <commons/config.h>
+#include <readline/readline.h>
+int main(){
+
+	t_config* confi = config_create("Nuevo.txt");
+	char* leido;
+	while(1){
+
+		leido=readline("nuevo nombre:");
+		config_set_value(confi,"nomre",leido);
+		readline("press enter to save");
+		config_save(confi);
+		config_
+
+	}
+}
+
