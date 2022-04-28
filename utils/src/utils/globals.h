@@ -16,6 +16,8 @@
 #define PRINT_COLOR_CYAN    "\x1b[36m"
 #define PRINT_COLOR_RESET   "\x1b[0m"
 
+#include <commons/collections/list.h>
+
 typedef enum //codigos de operaciones servidor
 {
 	OP_SUMA,
@@ -23,6 +25,19 @@ typedef enum //codigos de operaciones servidor
 	OP_MENSAJE
 }op_code;
 
+typedef enum //instrucciones
+{
+	NO_OP,
+	IO,
+	READ,
+	COPY,
+	WRITE,
+	EXIT
+}InstructionID;
 
+typedef struct {
+	InstructionID id;
+	int* parametros;
+}Instruccion;
 
 #endif /* SRC_UTILS_GLOBALS_H_ */
