@@ -20,7 +20,7 @@
 
 typedef enum //codigos de operaciones servidor
 {
-	OP_SUMA,
+	OP_LISTA_INSTRUCCIONES,
 	OP_RESTA,
 	OP_MENSAJE
 }op_code;
@@ -37,6 +37,7 @@ typedef enum //instrucciones
 
 typedef struct {
 	InstructionID id;
+	int cantidadParametros;
 	int* parametros;
 }Instruccion;
 
