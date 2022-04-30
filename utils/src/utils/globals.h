@@ -21,8 +21,7 @@
 typedef enum //codigos de operaciones servidor
 {
 	OP_LISTA_INSTRUCCIONES,
-	OP_RESTA,
-	OP_MENSAJE
+	OP_NUEVO_PCB
 }op_code;
 
 typedef enum //instrucciones
