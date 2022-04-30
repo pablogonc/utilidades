@@ -17,7 +17,7 @@
 #define PRINT_COLOR_RESET   "\x1b[0m"
 
 #include <commons/collections/list.h>
-
+#include <stdint.h>
 typedef enum //codigos de operaciones servidor
 {
 	OP_LISTA_INSTRUCCIONES,
@@ -40,5 +40,15 @@ typedef struct {
 	int cantidadParametros;
 	int* parametros;
 }Instruccion;
+
+typedef struct{
+	uint32_t id;
+	uint32_t tamanio;
+	t_list* instruccioes;
+	uint32_t program_counter;
+	uint32_t tabla_paginas;
+	uint32_t estimacion_rafaga;
+
+}PCB;
 
 #endif /* SRC_UTILS_GLOBALS_H_ */
